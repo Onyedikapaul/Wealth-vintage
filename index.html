@@ -1,0 +1,2455 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wealth Vintage — Your Legacy, Secured.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="icon" href="/assets/images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --gold: #0ea5e9;
+        --gold-light: #0284c7;
+        --gold-pale: #e0f2fe;
+        --gold-border: #e8d5a8;
+        --cream: #faf8f4;
+        --cream-2: #f4f0e8;
+        --white: #ffffff;
+        --ink: #1a1610;
+        --ink-2: #3d3528;
+        --ink-3: #7a6e5e;
+        --ink-4: #b0a590;
+        --border: #e5ddd0;
+        --border-2: #d4c9b5;
+        --green: #1a6b4a;
+        --green-bg: #e8f5ef;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        background: var(--white);
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 5%;
+        background: rgba(250, 248, 244, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        text-decoration: none;
+      }
+      .logo-crest {
+        width: 38px;
+        height: 38px;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+      }
+      .logo-crest span {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #fff;
+      }
+      .logo-text-wrap {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+      .logo-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .logo-name em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .logo-sub-small {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        font-weight: 500;
+        margin-top: 2px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.83rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: var(--ink-3);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn-ng {
+        font-family: "Nunito", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--ink-2);
+        background: none;
+        border: 1.5px solid var(--border-2);
+        padding: 0.5rem 1.3rem;
+        text-decoration: none;
+        transition: all 0.25s;
+        cursor: pointer;
+      }
+      .btn-ng:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .btn-np {
+        font-family: "Nunito", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #fff;
+        background: var(--gold);
+        border: none;
+        padding: 0.55rem 1.4rem;
+        text-decoration: none;
+        transition: all 0.25s;
+        cursor: pointer;
+      }
+      .btn-np:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(181, 134, 42, 0.25);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--ink);
+        transition: all 0.3s;
+      }
+
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--cream);
+        z-index: 9999;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 5%;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: var(--ink-3);
+      }
+      .mobile-menu a {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .mobile-menu a:hover {
+        color: var(--gold);
+      }
+
+      /* HERO — split layout */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        padding-top: 68px;
+      }
+      .hero-left {
+        padding: 5rem 5% 5rem 8%;
+        background: var(--cream);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+      }
+      .hero-left::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: -50px;
+        bottom: 0;
+        width: 100px;
+        background: var(--cream);
+        clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%);
+        z-index: 2;
+      }
+      .hero-right {
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-right img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .hero-right-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(181, 134, 42, 0.06),
+          transparent
+        );
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--white);
+        border: 1px solid var(--gold-border);
+        color: var(--gold);
+        padding: 0.4rem 1rem;
+        border-radius: 30px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.8rem;
+        box-shadow: 0 2px 12px rgba(181, 134, 42, 0.1);
+      }
+      .badge-pulse {
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.6rem, 4.5vw, 4rem);
+        font-weight: 700;
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .hero-sub {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.85;
+        margin-bottom: 2.5rem;
+        max-width: 440px;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .btn-gl {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gold);
+        color: #fff;
+        font-family: "Nunito", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 1rem 2.2rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .btn-gl:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(181, 134, 42, 0.3);
+      }
+      .btn-ol {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        color: var(--ink-2);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border: 1.5px solid var(--border-2);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .btn-ol:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .hero-proof {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+      .proof-avatars {
+        display: flex;
+      }
+      .proof-avatars img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 2px solid var(--white);
+        margin-left: -8px;
+        object-fit: cover;
+      }
+      .proof-avatars img:first-child {
+        margin-left: 0;
+      }
+      .proof-text {
+        font-size: 0.82rem;
+        font-weight: 400;
+        color: var(--ink-3);
+        line-height: 1.5;
+      }
+      .proof-text strong {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .hero-float-1 {
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        z-index: 3;
+        background: var(--white);
+        border: 1px solid var(--gold-border);
+        padding: 1.1rem 1.5rem;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        min-width: 200px;
+      }
+      .f1-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-4);
+        margin-bottom: 5px;
+      }
+      .f1-amount {
+        font-family: "Playfair Display", serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .f1-change {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: var(--green-bg);
+        color: var(--green);
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 2px 9px;
+        margin-top: 5px;
+      }
+      .hero-float-2 {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        z-index: 3;
+        background: var(--gold);
+        padding: 1rem 1.4rem;
+        min-width: 175px;
+      }
+      .f2-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 5px;
+      }
+      .f2-val {
+        font-family: "Playfair Display", serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .f2-sub {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 3px;
+      }
+
+      /* MARQUEE */
+      .marquee-strip {
+        background: var(--ink);
+        padding: 0.9rem 0;
+        overflow: hidden;
+      }
+      .marquee-track {
+        display: flex;
+        gap: 2.5rem;
+        animation: marquee 24s linear infinite;
+        white-space: nowrap;
+      }
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-item {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 0.73rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        flex-shrink: 0;
+      }
+      .marquee-dot {
+        width: 4px;
+        height: 4px;
+        background: var(--gold);
+        border-radius: 50%;
+      }
+
+      /* STATS */
+      .stats-section {
+        background: var(--gold-pale);
+        border-top: 1px solid var(--gold-border);
+        border-bottom: 1px solid var(--gold-border);
+        padding: 4rem 5%;
+      }
+      .stats-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .stat-item {
+        padding: 2rem;
+        border-right: 1px solid var(--gold-border);
+        text-align: center;
+        transition: background 0.3s;
+      }
+      .stat-item:last-child {
+        border-right: none;
+      }
+      .stat-item:hover {
+        background: rgba(181, 134, 42, 0.05);
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin-top: 0.4rem;
+      }
+
+      /* SHARED */
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .section-tag::before {
+        content: "";
+        width: 24px;
+        height: 1.5px;
+        background: var(--gold);
+      }
+      .section-h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 3vw, 2.8rem);
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.15;
+      }
+      .section-h2 em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .section-p {
+        font-size: 0.97rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.85;
+      }
+
+      /* FEATURES */
+      .features-section {
+        padding: 6rem 5%;
+        background: var(--white);
+      }
+      .features-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .features-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: end;
+        margin-bottom: 4rem;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      .feat-card {
+        padding: 2.2rem;
+        border: 1px solid var(--border);
+        background: var(--white);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.35s;
+      }
+      .feat-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--gold-pale);
+        opacity: 0;
+        transition: opacity 0.35s;
+      }
+      .feat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.07);
+        border-color: var(--gold-border);
+      }
+      .feat-card:hover::before {
+        opacity: 1;
+      }
+      .feat-card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .feat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 0.8rem;
+        color: var(--ink-4);
+        letter-spacing: 0.1em;
+        margin-bottom: 1.3rem;
+      }
+      .feat-icon {
+        width: 48px;
+        height: 48px;
+        border: 1.5px solid var(--gold-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+        background: var(--gold-pale);
+      }
+      .feat-icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--gold);
+        fill: none;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .feat-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.6rem;
+      }
+      .feat-desc {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.8;
+      }
+
+      /* HOW IT WORKS */
+      .how-section {
+        padding: 6rem 5%;
+        background: var(--cream);
+      }
+      .how-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .how-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+        margin-top: 3.5rem;
+      }
+      .how-img-outer {
+        position: relative;
+        border: 1px solid var(--gold-border);
+      }
+      .how-img-outer::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        right: 14px;
+        bottom: 14px;
+        border: 1px solid var(--gold-border);
+        z-index: 0;
+      }
+      .how-img-outer img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 520px;
+        object-fit: cover;
+        display: block;
+      }
+      .how-badge {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        z-index: 2;
+        background: var(--gold);
+        color: #fff;
+        padding: 1.1rem 1.5rem;
+        font-family: "Playfair Display", serif;
+      }
+      .how-badge-num {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .how-badge-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        margin-top: 2px;
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+      }
+      .step-item {
+        display: flex;
+        gap: 1.6rem;
+        padding: 1.8rem 0;
+        border-bottom: 1px solid var(--border);
+        align-items: flex-start;
+        transition: all 0.3s;
+      }
+      .step-item:first-child {
+        padding-top: 0;
+      }
+      .step-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .step-item:hover {
+        padding-left: 6px;
+      }
+      .step-circle {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border: 1.5px solid var(--gold-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display", serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--gold);
+        transition: all 0.3s;
+      }
+      .step-item:hover .step-circle {
+        background: var(--gold);
+        color: #fff;
+        border-color: var(--gold);
+      }
+      .step-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.35rem;
+      }
+      .step-desc {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.75;
+      }
+
+      /* WHY US */
+      .why-section {
+        padding: 6rem 5%;
+        background: var(--white);
+      }
+      .why-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+        margin-top: 3.5rem;
+      }
+      .why-img-col {
+        position: relative;
+      }
+      .why-img-main {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+        display: block;
+        border: 1px solid var(--border);
+      }
+      .why-img-card {
+        position: absolute;
+        bottom: -20px;
+        left: -20px;
+        background: var(--white);
+        border: 1px solid var(--gold-border);
+        padding: 1.2rem 1.6rem;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        min-width: 200px;
+      }
+      .wic-icon {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+      }
+      .wic-title {
+        font-family: "Playfair Display", serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .wic-sub {
+        font-size: 0.72rem;
+        color: var(--ink-3);
+        margin-top: 2px;
+      }
+      .why-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+      }
+      .why-item {
+        display: flex;
+        gap: 1.2rem;
+        align-items: flex-start;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+      .why-item:hover {
+        border-color: var(--gold-border);
+        background: var(--gold-pale);
+      }
+      .why-item-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--gold);
+        min-width: 26px;
+      }
+      .why-item-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 0.3rem;
+      }
+      .why-item-desc {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.75;
+      }
+
+      /* TESTIMONIALS */
+      .testi-section {
+        padding: 6rem 5%;
+        background: var(--cream-2);
+      }
+      .testi-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3.5rem;
+      }
+      .testi-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        padding: 2.2rem;
+        transition: all 0.3s;
+        position: relative;
+      }
+      .testi-card::after {
+        content: "\201C";
+        position: absolute;
+        top: 1.2rem;
+        right: 1.5rem;
+        font-family: "Playfair Display", serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: var(--gold-border);
+        line-height: 1;
+      }
+      .testi-card:hover {
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+        border-color: var(--gold-border);
+        transform: translateY(-3px);
+      }
+      .testi-stars {
+        color: var(--gold);
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+      }
+      .testi-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-style: italic;
+        color: var(--ink-2);
+        line-height: 1.8;
+        margin-bottom: 1.6rem;
+      }
+      .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--border);
+      }
+      .author-img {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--gold-border);
+      }
+      .author-name {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .author-role {
+        font-size: 0.75rem;
+        color: var(--ink-3);
+      }
+
+      /* FAQ */
+      .faq-section {
+        padding: 6rem 5%;
+        background: var(--white);
+      }
+      .faq-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.6fr;
+        gap: 5rem;
+        align-items: start;
+        margin-top: 3.5rem;
+      }
+      .faq-left {
+        position: sticky;
+        top: 100px;
+      }
+      .faq-left-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        display: block;
+        border: 1px solid var(--border);
+        margin-top: 2rem;
+      }
+      .faq-note {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.8;
+        margin-top: 1.2rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid var(--border);
+      }
+      .faq-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--gold);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-top: 1rem;
+        transition: gap 0.2s;
+      }
+      .faq-link:hover {
+        gap: 14px;
+      }
+      .faq-items {
+        display: flex;
+        flex-direction: column;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+      }
+      .faq-item:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .faq-q {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.3rem 0;
+        user-select: none;
+        transition: color 0.2s;
+      }
+      .faq-q:hover {
+        color: var(--gold);
+      }
+      .faq-q-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: inherit;
+      }
+      .faq-icon {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.35s;
+        color: var(--gold);
+        flex-shrink: 0;
+      }
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.3s ease;
+      }
+      .faq-item.open .faq-a {
+        max-height: 300px;
+        padding-bottom: 1.3rem;
+      }
+      .faq-a p {
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: var(--ink-3);
+        line-height: 1.85;
+      }
+
+      /* CTA */
+      .cta-section {
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-img {
+        width: 100%;
+        height: 480px;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.42) sepia(0.15);
+      }
+      .cta-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 22, 16, 0.55),
+          rgba(181, 134, 42, 0.18)
+        );
+      }
+      .cta-inner {
+        text-align: center;
+        max-width: 640px;
+        padding: 0 5%;
+      }
+      .cta-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .cta-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+      }
+      .cta-title em {
+        font-style: italic;
+        color: var(--gold-light);
+      }
+      .cta-sub {
+        font-size: 1rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn-cta-w {
+        background: #fff;
+        color: var(--gold);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.95rem 2.2rem;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .btn-cta-w:hover {
+        background: var(--gold-pale);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+      }
+      .btn-cta-g {
+        background: transparent;
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
+        font-family: "Nunito", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.95rem 2.2rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .btn-cta-g:hover {
+        border-color: #fff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--ink);
+        padding: 4.5rem 5% 2.5rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2.2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+      }
+      .footer-brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+      }
+      .footer-brand-name em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .footer-tagline {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.8;
+        margin-top: 0.8rem;
+        max-width: 260px;
+      }
+      .footer-socials {
+        display: flex;
+        gap: 8px;
+        margin-top: 1.5rem;
+      }
+      .social-btn {
+        width: 34px;
+        height: 34px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .social-btn:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .social-btn svg {
+        width: 14px;
+        height: 14px;
+      }
+      .footer-col h4 {
+        font-family: "Playfair Display", serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .footer-col ul a {
+        font-size: 0.83rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-col ul a:hover {
+        color: var(--gold);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        padding-top: 1.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .footer-legal {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .footer-legal a {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-legal a:hover {
+        color: var(--gold);
+      }
+
+      /* REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .rd1 {
+        transition-delay: 0.1s;
+      }
+      .rd2 {
+        transition-delay: 0.2s;
+      }
+      .rd3 {
+        transition-delay: 0.3s;
+      }
+      .rd4 {
+        transition-delay: 0.4s;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .hero-right {
+          display: none;
+        }
+        .hero-left {
+          min-height: auto;
+          padding: 4rem 5%;
+        }
+        .hero-left::after {
+          display: none;
+        }
+        .features-top {
+          grid-template-columns: 1fr;
+        }
+        .how-grid {
+          grid-template-columns: 1fr;
+        }
+        .how-img-outer {
+          order: -1;
+        }
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+        .testi-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+        .faq-left {
+          position: static;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 2rem;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stat-item:nth-child(2) {
+          border-right: none;
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          padding: 0.9rem 5%;
+        }
+        .nav-links,
+        .nav-actions {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+        .testi-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+      @media (max-width: 480px) {
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat-item {
+          border-right: none !important;
+          border-bottom: 1px solid var(--gold-border);
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-close" onclick="closeMobileMenu()">✕</button>
+      <a href="#features" onclick="closeMobileMenu()">Features</a>
+      <a href="#how" onclick="closeMobileMenu()">How It Works</a>
+      <a href="#testimonials" onclick="closeMobileMenu()">Reviews</a>
+      <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
+      <a href="./contact.html" onclick="closeMobileMenu()">Contact</a>
+      <a href="./register.html" style="color: var(--gold); margin-top: 1rem"
+        >Open Account →</a
+      >
+    </div>
+
+    <nav>
+      <a href="#" class="nav-logo">
+        <div class="logo-crest"><span>W</span></div>
+        <div class="logo-text-wrap">
+          <span class="logo-name">Wealth <em>Vintage</em></span>
+          <span class="logo-sub-small">Est. Private Finance</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="./login.html" class="btn-ng">Sign In</a>
+        <a href="./register.html" class="btn-np">Open Account</a>
+      </div>
+      <button class="hamburger" onclick="openMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>Trusted by 50,000+ members globally
+        </div>
+        <h1>Grow Smarter.<br /><em>Live Richer.</em><br />Start Today.</h1>
+        <p class="hero-sub">
+          Wealth Vintage gives you private-grade financial tools — global
+          transfers, virtual cards, crypto swaps, and real-time insights — all
+          in one elegant, secure platform.
+        </p>
+        <div class="hero-btns">
+          <a href="./register.html" class="btn-gl"
+            >Open Account Free
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg
+          ></a>
+          <a href="#how" class="btn-ol">See How It Works</a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-avatars">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+              alt=""
+            />
+            <img
+              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face"
+              alt=""
+            />
+            <img
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face"
+              alt=""
+            />
+            <img
+              src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+              alt=""
+            />
+          </div>
+          <div class="proof-text">
+            <strong>4.9 / 5</strong> from over 12,000 verified reviews
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img
+          src="/assets/images/hero.avif"
+          alt="Wealth Vintage"
+          style="max-height: 100vh;"
+        />
+        <div class="hero-right-overlay"></div>
+        <div class="hero-float-1">
+          <div class="f1-label">Portfolio Balance</div>
+          <div class="f1-amount">$84,520</div>
+          <div class="f1-change">↑ +3.4% this month</div>
+        </div>
+        <div class="hero-float-2">
+          <div class="f2-label">Transfer Sent</div>
+          <div class="f2-val">$2,400.00</div>
+          <div class="f2-sub">✓ Delivered instantly</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Local Transfers</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>International Wire</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Virtual Cards</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Crypto Swap</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>256-bit Encrypted</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>180+ Countries</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>24/7 Support</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Zero Hidden Fees</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Local Transfers</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>International Wire</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Virtual Cards</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Crypto Swap</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>256-bit Encrypted</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>180+ Countries</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>24/7 Support</span>
+        </div>
+        <div class="marquee-item">
+          <span class="marquee-dot"></span><span>Zero Hidden Fees</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="stats-section">
+      <div class="stats-inner">
+        <div class="stats-grid">
+          <div class="stat-item reveal">
+            <div class="stat-num">50K+</div>
+            <div class="stat-label">Active Members</div>
+          </div>
+          <div class="stat-item reveal rd1">
+            <div class="stat-num">$2B+</div>
+            <div class="stat-label">Transactions Processed</div>
+          </div>
+          <div class="stat-item reveal rd2">
+            <div class="stat-num">99.9%</div>
+            <div class="stat-label">Platform Uptime</div>
+          </div>
+          <div class="stat-item reveal rd3">
+            <div class="stat-num">180+</div>
+            <div class="stat-label">Countries Supported</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section" id="features">
+      <div class="features-inner">
+        <div class="features-top">
+          <div>
+            <div class="section-tag reveal">Platform Features</div>
+            <h2 class="section-h2 reveal rd1">
+              Everything you need<br />to command your <em>wealth</em>
+            </h2>
+          </div>
+          <p class="section-p reveal rd2">
+            Built for individuals and businesses who demand full control of
+            their finances — without compromise on speed, privacy, or security.
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feat-card reveal">
+            <div class="feat-num">— 01</div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <div class="feat-title">Instant Local Transfers</div>
+            <div class="feat-desc">
+              Send to any domestic account, 24/7, with zero fees and real-time
+              confirmation every single time.
+            </div>
+          </div>
+          <div class="feat-card reveal rd1">
+            <div class="feat-num">— 02</div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path
+                  d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                />
+              </svg>
+            </div>
+            <div class="feat-title">International Transfers</div>
+            <div class="feat-desc">
+              Wire, PayPal, Wise, Crypto — move money across borders at rates
+              your traditional bank can't match.
+            </div>
+          </div>
+          <div class="feat-card reveal rd2">
+            <div class="feat-num">— 03</div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <path d="M2 10h20" />
+              </svg>
+            </div>
+            <div class="feat-title">Virtual Cards</div>
+            <div class="feat-desc">
+              Create secure virtual cards instantly for online shopping, global
+              subscriptions, and recurring payments.
+            </div>
+          </div>
+          <div class="feat-card reveal rd1">
+            <div class="feat-num">— 04</div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <path d="M12 17h.01" />
+              </svg>
+            </div>
+            <div class="feat-title">Crypto & Currency Swap</div>
+            <div class="feat-desc">
+              Exchange USD and Bitcoin at live market rates with instant
+              conversion previews before you confirm.
+            </div>
+          </div>
+          <div class="feat-card reveal rd2">
+            <div class="feat-num">— 05</div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div class="feat-title">Private-Grade Security</div>
+            <div class="feat-desc">
+              2FA, OTP, PIN protection, and 256-bit end-to-end encryption
+              safeguard every transaction and account action.
+            </div>
+          </div>
+          <div class="feat-card reveal rd3">
+            <div class="feat-num">— 06</div>
+            <div class="feat-icon">
+              <svg viewBox="0 0 24 24">
+                <line x1="18" y1="20" x2="18" y2="10" />
+                <line x1="12" y1="20" x2="12" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="14" />
+              </svg>
+            </div>
+            <div class="feat-title">Financial Intelligence</div>
+            <div class="feat-desc">
+              Track spending, monitor transaction history, and get a precise
+              picture of your financial health in real time.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-section" id="how">
+      <div class="how-inner">
+        <div class="section-tag reveal">How It Works</div>
+        <h2
+          class="section-h2 reveal rd1"
+          style="max-width: 480px; margin-top: 0.5rem"
+        >
+          Up and running in <em>minutes</em>, not days.
+        </h2>
+        <div class="how-grid">
+          <div class="how-img-outer reveal">
+            <img
+              src="/assets/images/hero-image.jfif"
+              alt="Platform"
+            />
+            <div class="how-badge">
+              <div class="how-badge-num">5 min</div>
+              <div class="how-badge-label">Setup time</div>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step-item reveal">
+              <div class="step-circle">1</div>
+              <div>
+                <div class="step-title">Create your account</div>
+                <div class="step-desc">
+                  Sign up with your name, email, and phone number. Takes less
+                  than 2 minutes — no paperwork, no branch visits.
+                </div>
+              </div>
+            </div>
+            <div class="step-item reveal rd1">
+              <div class="step-circle">2</div>
+              <div>
+                <div class="step-title">Verify your identity</div>
+                <div class="step-desc">
+                  Confirm your email with a 6-digit OTP code. Your account is
+                  activated immediately upon verification.
+                </div>
+              </div>
+            </div>
+            <div class="step-item reveal rd2">
+              <div class="step-circle">3</div>
+              <div>
+                <div class="step-title">Fund your account</div>
+                <div class="step-desc">
+                  Deposit via crypto or wire transfer and start transacting
+                  immediately — no waiting periods or holds.
+                </div>
+              </div>
+            </div>
+            <div class="step-item reveal rd3">
+              <div class="step-circle">4</div>
+              <div>
+                <div class="step-title">Manage with full control</div>
+                <div class="step-desc">
+                  Transfer locally, send internationally, swap currencies — all
+                  from one clean dashboard on any device.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-section" id="why">
+      <div class="why-inner">
+        <div class="section-tag reveal">Why Wealth Vintage</div>
+        <h2
+          class="section-h2 reveal rd1"
+          style="max-width: 520px; margin-top: 0.5rem"
+        >
+          Finance that works as <em>hard as you do.</em>
+        </h2>
+        <div class="why-grid">
+          <div class="why-img-col reveal">
+            <img
+              src="/assets/images/money.jfif"
+              alt="Financial freedom"
+              class="why-img-main"
+            />
+            <div class="why-img-card">
+              <div class="wic-icon">🔒</div>
+              <div class="wic-title">256-bit Encrypted</div>
+              <div class="wic-sub">Bank-grade security</div>
+            </div>
+          </div>
+          <div class="why-list">
+            <div class="why-item reveal">
+              <div class="why-item-num">I</div>
+              <div>
+                <div class="why-item-title">Transparent pricing, always</div>
+                <div class="why-item-desc">
+                  Every charge shown upfront before you confirm. No hidden
+                  deductions, no monthly maintenance on standard accounts.
+                </div>
+              </div>
+            </div>
+            <div class="why-item reveal rd1">
+              <div class="why-item-num">II</div>
+              <div>
+                <div class="why-item-title">Active in 180+ countries</div>
+                <div class="why-item-desc">
+                  Send and receive across borders via wire, crypto, PayPal,
+                  Wise, and more global rails — wherever you need to be.
+                </div>
+              </div>
+            </div>
+            <div class="why-item reveal rd2">
+              <div class="why-item-num">III</div>
+              <div>
+                <div class="why-item-title">Instant movement of capital</div>
+                <div class="why-item-desc">
+                  Domestic transfers are instant 24/7. Your money moves the
+                  moment you authorise it — no exceptions, no delays.
+                </div>
+              </div>
+            </div>
+            <div class="why-item reveal rd3">
+              <div class="why-item-num">IV</div>
+              <div>
+                <div class="why-item-title">One dashboard, total control</div>
+                <div class="why-item-desc">
+                  Cards, transfers, deposits, swaps — every financial instrument
+                  in one refined, intuitive interface.
+                </div>
+              </div>
+            </div>
+            <div class="why-item reveal rd4">
+              <div class="why-item-num">V</div>
+              <div>
+                <div class="why-item-title">24/7 human support</div>
+                <div class="why-item-desc">
+                  Real people, not bots. Our support team is available around
+                  the clock via live chat, email, and phone.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testi-section" id="testimonials">
+      <div class="testi-inner">
+        <div style="text-align: center">
+          <div class="section-tag reveal" style="justify-content: center">
+            Client Voices
+          </div>
+          <h2 class="section-h2 reveal rd1" style="margin-top: 0.5rem">
+            What our members say
+          </h2>
+          <p
+            class="section-p reveal rd2"
+            style="max-width: 420px; margin: 0.8rem auto 0"
+          >
+            Real stories from real people who trust Wealth Vintage every day.
+          </p>
+        </div>
+        <div class="testi-grid">
+          <div class="testi-card reveal">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "Wealth Vintage made international transfers seamless. I send
+              money to my family abroad every month — it arrives instantly and
+              the rates are simply unbeatable."
+            </p>
+            <div class="testi-author">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face"
+                alt=""
+                class="author-img"
+              />
+              <div>
+                <div class="author-name">James Mitchell</div>
+                <div class="author-role">Business Owner, USA</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal rd1">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "The virtual card feature is a genuine game-changer. I use it for
+              all my online subscriptions and have had absolutely zero security
+              concerns. Highly recommended."
+            </p>
+            <div class="testi-author">
+              <img
+                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face"
+                alt=""
+                class="author-img"
+              />
+              <div>
+                <div class="author-name">Sophie Chen</div>
+                <div class="author-role">Software Developer, Canada</div>
+              </div>
+            </div>
+          </div>
+          <div class="testi-card reveal rd2">
+            <div class="testi-stars">★★★★★</div>
+            <p class="testi-text">
+              "From registration to my first transfer took less than ten
+              minutes. The interface is pristine — fast, clean, and utterly
+              effortless to navigate on any device."
+            </p>
+            <div class="testi-author">
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face"
+                alt=""
+                class="author-img"
+              />
+              <div>
+                <div class="author-name">Lucas Reynolds</div>
+                <div class="author-role">Freelance Designer, UK</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="faq-inner">
+        <div class="faq-grid">
+          <div class="faq-left">
+            <div class="section-tag reveal">FAQ</div>
+            <h2 class="section-h2 reveal rd1" style="margin-top: 0.5rem">
+              Common<br /><em>questions</em>
+            </h2>
+            <img
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=500&fit=crop"
+              alt="Support team"
+              class="faq-left-img reveal rd2"
+            />
+            <p class="faq-note reveal rd3">
+              Can't find your answer? Our support team is available around the
+              clock to assist you personally.
+            </p>
+            <a href="./contact.html" class="faq-link reveal rd4"
+              >Contact Support →</a
+            >
+          </div>
+          <div class="faq-items">
+            <div class="faq-item reveal" onclick="toggleFaq(this)">
+              <div class="faq-q">
+                <span class="faq-q-text">Is Wealth Vintage safe to use?</span
+                ><svg
+                  class="faq-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+              <div class="faq-a">
+                <p>
+                  Absolutely. We use 256-bit encryption, two-factor
+                  authentication, OTP verification on every login, and PIN
+                  protection. Your funds and data are protected at all times.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item reveal rd1" onclick="toggleFaq(this)">
+              <div class="faq-q">
+                <span class="faq-q-text">How do I open an account?</span
+                ><svg
+                  class="faq-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+              <div class="faq-a">
+                <p>
+                  Click "Open Account", fill in your basic details, verify your
+                  email with a one-time code, and your account is live — all
+                  under five minutes, no paperwork required.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item reveal rd2" onclick="toggleFaq(this)">
+              <div class="faq-q">
+                <span class="faq-q-text"
+                  >What transfer methods are supported?</span
+                ><svg
+                  class="faq-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+              <div class="faq-a">
+                <p>
+                  We support local bank transfers, international wire, PayPal,
+                  Wise, Bitcoin, Cash App, Zelle, Venmo, Revolut, and more
+                  across 180+ countries.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item reveal rd3" onclick="toggleFaq(this)">
+              <div class="faq-q">
+                <span class="faq-q-text">Are there fees for transfers?</span
+                ><svg
+                  class="faq-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+              <div class="faq-a">
+                <p>
+                  Local transfers are completely free. International transfers
+                  carry minimal fees depending on destination — all clearly
+                  displayed before you confirm any transaction.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item reveal rd4" onclick="toggleFaq(this)">
+              <div class="faq-q">
+                <span class="faq-q-text"
+                  >Can I use Wealth Vintage on mobile?</span
+                ><svg
+                  class="faq-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+              <div class="faq-a">
+                <p>
+                  Yes — fully responsive on all devices. A dedicated native
+                  mobile app is also in development and coming very soon.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item reveal rd4" onclick="toggleFaq(this)">
+              <div class="faq-q">
+                <span class="faq-q-text">How do I reach support?</span
+                ><svg
+                  class="faq-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </div>
+              <div class="faq-a">
+                <p>
+                  Via the live chat widget in your dashboard or our
+                  <a href="./contact.html" style="color: var(--gold)"
+                    >Contact page</a
+                  >. Real people available 24/7 — no bots.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <img
+        src="/assets/images/happy.jfif"
+        alt="CTA"
+        class="cta-img"
+      />
+      <div class="cta-overlay">
+        <div class="cta-inner">
+          <div class="cta-eyebrow reveal">Get Started Today</div>
+          <h2 class="cta-title reveal rd1">
+            Ready to <em>command</em><br />your finances?
+          </h2>
+          <p class="cta-sub reveal rd2">
+            Join 50,000+ members who trust Wealth Vintage for secure, fast, and
+            flexible financial management — anywhere in the world.
+          </p>
+          <div class="cta-btns reveal rd3">
+            <a href="./register.html" class="btn-cta-w">Open Account Free</a>
+            <a href="./contact.html" class="btn-cta-g">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Wealth <em>Vintage</em></div>
+          <p class="footer-tagline">
+            Private-grade finance for a modern world. Secure, fast, and built
+            for those who expect more.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Twitter"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+                /></svg
+            ></a>
+            <a href="#" class="social-btn" aria-label="Facebook"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                /></svg
+            ></a>
+            <a href="#" class="social-btn" aria-label="Instagram"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg
+            ></a>
+            <a href="#" class="social-btn" aria-label="LinkedIn"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" /></svg
+            ></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="./register.html">Open Account</a></li>
+            <li><a href="./login.html">Sign In</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Local Transfers</a></li>
+            <li><a href="#">International Wire</a></li>
+            <li><a href="#">Virtual Cards</a></li>
+            <li><a href="#">Crypto Swap</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="./terms-of-service.html">Privacy Policy</a></li>
+            <li><a href="./terms-of-service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          © 2025 Wealth Vintage. All rights reserved.
+        </div>
+        <div class="footer-legal">
+          <a href="./terms-of-service.html">Privacy</a
+          ><a href="./terms-of-service.html">Terms</a
+          ><a href="./contact.html">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CAPTCHA GATE -->
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <div id="dw-gate" style="display: none">
+      <div class="dw-gate-bg"></div>
+      <div class="dw-gate-card">
+        <div class="dw-gate-topbar">
+          <span class="dw-gate-dot"></span><span class="dw-gate-dot"></span
+          ><span class="dw-gate-dot"></span>
+        </div>
+        <div class="dw-gate-logo">
+          <img src="/assets/images/logo.png" alt="Wealth Vintage" />
+        </div>
+        <h1 class="dw-gate-title">Wealth Vintage</h1>
+        <div class="dw-gate-divider"></div>
+        <div class="dw-gate-pills">
+          <div class="dw-gate-pill">
+            <span>🔒</span><span>SSL Secured</span>
+          </div>
+          <div class="dw-gate-pill"><span>⚡</span><span>Live</span></div>
+          <div class="dw-gate-pill">
+            <span>🌍</span><span>Global Access</span>
+          </div>
+        </div>
+        <p class="dw-gate-desc">
+          Welcome to our secure platform. Please complete the verification below
+          to confirm you're a real person.
+        </p>
+        <div class="dw-gate-captcha">
+          <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAACsbk7brKCP-7kiF"
+            data-callback="onGatePassed"
+            data-theme="dark"
+          ></div>
+        </div>
+        <p class="dw-gate-footer">🛡️ Protected by Cloudflare Turnstile</p>
+      </div>
+    </div>
+    <style>
+      #dw-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        align-items: center;
+        justify-content: center;
+        font-family: "DM Sans", sans-serif;
+      }
+      .dw-gate-bg {
+        position: absolute;
+        inset: 0;
+        background: #030810;
+        background-image: radial-gradient(
+          ellipse 80% 60% at 50% 0%,
+          rgba(181, 134, 42, 0.15) 0%,
+          transparent 70%
+        );
+      }
+      .dw-gate-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(181, 134, 42, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(181, 134, 42, 0.04) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridMove 20s linear infinite;
+      }
+      @keyframes gridMove {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(50px);
+        }
+      }
+      .dw-gate-card {
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.02)
+        );
+        border: 1px solid rgba(181, 134, 42, 0.2);
+        border-radius: 20px;
+        padding: 40px 44px;
+        width: 100%;
+        max-width: 460px;
+        margin: 20px;
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(20px);
+        animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .dw-gate-topbar {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 28px;
+      }
+      .dw-gate-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .dw-gate-dot:first-child {
+        background: #ff5f57;
+      }
+      .dw-gate-dot:nth-child(2) {
+        background: #febc2e;
+      }
+      .dw-gate-dot:nth-child(3) {
+        background: #28c840;
+      }
+      .dw-gate-logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+      .dw-gate-logo img {
+        height: 52px;
+        filter: drop-shadow(0 0 20px rgba(181, 134, 42, 0.4));
+      }
+      .dw-gate-title {
+        font-family: "Playfair Display", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: #fff;
+        text-align: center;
+        margin: 0 0 4px;
+      }
+      .dw-gate-divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(181, 134, 42, 0.3),
+          transparent
+        );
+        margin-bottom: 24px;
+      }
+      .dw-gate-pills {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .dw-gate-pill {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(181, 134, 42, 0.08);
+        border: 1px solid rgba(181, 134, 42, 0.15);
+        border-radius: 50px;
+        padding: 5px 14px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+      }
+      .dw-gate-desc {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.45);
+        text-align: center;
+        line-height: 1.7;
+        margin: 0 0 24px;
+        font-weight: 300;
+      }
+      .dw-gate-captcha {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .dw-gate-footer {
+        text-align: center;
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.2);
+        margin: 0;
+      }
+    </style>
+    <script>
+      (function () {
+        if (!localStorage.getItem("dw_verified")) {
+          const g = document.getElementById("dw-gate");
+          g.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        }
+      })();
+      function onGatePassed() {
+        localStorage.setItem("dw_verified", "1");
+        const g = document.getElementById("dw-gate");
+        g.style.transition = "opacity .6s ease";
+        g.style.opacity = "0";
+        setTimeout(() => {
+          g.style.display = "none";
+          document.body.style.overflow = "";
+        }, 600);
+      }
+    </script>
+    <script>
+      function openMobileMenu() {
+        document.getElementById("mobileMenu").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMobileMenu() {
+        document.getElementById("mobileMenu").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function toggleFaq(el) {
+        const o = el.classList.contains("open");
+        document
+          .querySelectorAll(".faq-item.open")
+          .forEach((i) => i.classList.remove("open"));
+        if (!o) el.classList.add("open");
+      }
+      const ro = new IntersectionObserver(
+        (e) => {
+          e.forEach((x) => {
+            if (x.isIntersecting) {
+              x.target.classList.add("visible");
+              ro.unobserve(x.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => ro.observe(el));
+    </script>
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = "7624f45c2fd0e6c023e08149787a3168ec2a5a77";
+      window.smartsupp ||
+        (function (d) {
+          var s,
+            c,
+            o = (smartsupp = function () {
+              o._.push(arguments);
+            });
+          o._ = [];
+          s = d.getElementsByTagName("script")[0];
+          c = d.createElement("script");
+          c.type = "text/javascript";
+          c.charset = "utf-8";
+          c.async = true;
+          c.src = "https://www.smartsuppchat.com/loader.js?";
+          s.parentNode.insertBefore(c, s);
+        })(document);
+    </script>
+    <noscript
+      >Powered by
+      <a href="https://www.smartsupp.com" target="_blank"
+        >Smartsupp</a
+      ></noscript
+    >
+  </body>
+</html>
