@@ -46,6 +46,7 @@ const allowedOrigins = [
   "http://127.0.0.1:5500",
   "https://nfv-web-ing-uk.com",
   "https://www.nfv-web-ing-uk.com",
+  "https://wealth-vintage-production.up.railway.app"
 ];
 
 // Middleware
