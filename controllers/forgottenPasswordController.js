@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import User from "../models/UserModel.js";
-import resend from "../lib/resend.js";
+import sendEmail from "../lib/sendEmail.js";
 
 // ─── forgotPassword — send OTP ────────────────────────────────
 export const forgotPassword = async (req, res) => {
@@ -10,7 +10,6 @@ export const forgotPassword = async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    // Always respond 200 — don't leak whether account exists
     if (!user) {
       return res.status(200).json({
         message:
@@ -19,7 +18,6 @@ export const forgotPassword = async (req, res) => {
       });
     }
 
-    // Rate limit: block if code was sent less than 59s ago
     if (user.emailVerificationExpires) {
       const issuedAt = new Date(
         user.emailVerificationExpires.getTime() - 10 * 60 * 1000,
@@ -37,8 +35,7 @@ export const forgotPassword = async (req, res) => {
     user.emailVerificationExpires = new Date(Date.now() + 10 * 60 * 1000);
     await user.save();
 
-    await resend.emails.send({
-      from: process.env.EMAIL_FROM || "info@nfv-web-ing-uk.com",
+    await sendEmail({
       to: email,
       subject: "Reset your password – Wealth Vintage",
       html: `
@@ -88,25 +85,21 @@ export const verifyForgotOTP = async (req, res) => {
         .status(404)
         .json({ message: "No account found with this email." });
 
-    if (!user.emailVerificationOTP || !user.emailVerificationExpires) {
+    if (!user.emailVerificationOTP || !user.emailVerificationExpires)
       return res
         .status(400)
         .json({ message: "No reset code found. Please request a new one." });
-    }
 
-    if (new Date() > user.emailVerificationExpires) {
+    if (new Date() > user.emailVerificationExpires)
       return res
         .status(400)
         .json({ message: "Code has expired. Please request a new one." });
-    }
 
-    if (user.emailVerificationOTP !== otp.trim()) {
+    if (user.emailVerificationOTP !== otp.trim())
       return res
         .status(400)
         .json({ message: "Incorrect code. Please try again." });
-    }
 
-    // Generate a one-time reset token (15 min)
     const resetToken = crypto.randomBytes(32).toString("hex");
     user.emailVerificationOTP = undefined;
     user.emailVerificationExpires = undefined;
@@ -133,12 +126,10 @@ export const resendForgotOTP = async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    // Silently succeed — don't leak account existence
     if (!user) {
       return res.status(200).json({ message: "A new code has been sent." });
     }
 
-    // Rate limit
     if (user.emailVerificationExpires) {
       const issuedAt = new Date(
         user.emailVerificationExpires.getTime() - 10 * 60 * 1000,
@@ -156,8 +147,7 @@ export const resendForgotOTP = async (req, res) => {
     user.emailVerificationExpires = new Date(Date.now() + 10 * 60 * 1000);
     await user.save();
 
-    await resend.emails.send({
-      from: process.env.EMAIL_FROM || "info@nfv-web-ing-uk.com",
+    await sendEmail({
       to: email,
       subject: "New password reset code – Wealth Vintage",
       html: `
@@ -190,37 +180,33 @@ export const resendForgotOTP = async (req, res) => {
 export const resetPassword = async (req, res) => {
   try {
     const { email, token, password } = req.body;
-    if (!email || !token || !password) {
+    if (!email || !token || !password)
       return res.status(400).json({ message: "All fields are required." });
-    }
-    if (password.length < 8) {
+
+    if (password.length < 8)
       return res
         .status(400)
         .json({ message: "Password must be at least 8 characters." });
-    }
 
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "No account found." });
 
-    if (!user.passwordResetToken || !user.passwordResetExpires) {
+    if (!user.passwordResetToken || !user.passwordResetExpires)
       return res
         .status(400)
         .json({ message: "No active reset session. Please start over." });
-    }
 
-    if (new Date() > user.passwordResetExpires) {
+    if (new Date() > user.passwordResetExpires)
       return res
         .status(400)
         .json({ message: "Reset session expired. Please start over." });
-    }
 
-    if (user.passwordResetToken !== token) {
+    if (user.passwordResetToken !== token)
       return res
         .status(400)
         .json({ message: "Invalid reset token. Please start over." });
-    }
 
-    user.password = password; // plain text — hash with bcrypt if you add it later
+    user.password = password;
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save();
