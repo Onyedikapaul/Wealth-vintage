@@ -44,8 +44,8 @@ const __dirname = path.dirname(__filename);
 const allowedOrigins = [
   "http://localhost:4000",
   "http://127.0.0.1:5500",
-  "https://nfv-web-ing-uk.com",
-  "https://www.nfv-web-ing-uk.com",
+  "https://wealth-vintage.pro",
+  "https://www.wealth-vintage.pro",
   "https://wealth-vintage-production.up.railway.app"
 ];
 
