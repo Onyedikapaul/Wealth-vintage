@@ -1935,6 +1935,52 @@
       }
     </script>
 
+    <!-- <script>
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  data.terms = document.querySelector('input[name="terms"]').checked;
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton.innerHTML;
+
+  submitButton.disabled = true;
+  submitButton.innerHTML = "Creating Account...";
+
+  try {
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonText;
+
+    if (!res.ok) {
+      return showToast(result.message || "Registration failed", "error");
+    }
+
+    showToast("Account created! Redirecting to login...", "success");
+    setTimeout(() => {
+      window.location.href = "/login.html";
+    }, 1500);
+
+  } catch (err) {
+    console.error(err);
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalButtonText;
+    showToast("Something went wrong. Please try again.", "error");
+  }
+});
+</script> -->
+
+
     <script>
       // Replace the existing form submit <script> block in register.html with this
 
@@ -1990,6 +2036,7 @@ form.addEventListener("submit", async (e) => {
 });
     </script>
 
+    
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};

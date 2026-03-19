@@ -2,7 +2,7 @@ import express from "express";
 import crypto from "crypto";
 import checkAuth from "../middleware/authMiddleware.js";
 import UserModel from "../models/UserModel.js";
-import sendEmail from "../lib/sendEmail.js";
+import resend from "../lib/resend.js";
 
 // OTP store: in-memory { userId: { code, purpose, expiresAt } }
 // For production consider Redis, but this works fine for single-instance
@@ -35,10 +35,13 @@ OtpRouter.post("/request", checkAuth, async (req, res) => {
     // Store OTP
     otpStore.set(req.user._id.toString(), { code: otp, purpose, expiresAt });
 
-    // Send email via Nodemailer
+    // Send email via Resend
     let emailSent = false;
     try {
-      await sendEmail({
+    
+
+      await resend.emails.send({
+        from: process.env.EMAIL_FROM || "info@wealth-vintage.pro",
         to: user.email,
         subject: "Your One-Time Password (OTP)",
         html: `
@@ -75,6 +78,7 @@ OtpRouter.post("/request", checkAuth, async (req, res) => {
 });
 
 // ─── Export verifyOTP for use in TransferRouter ───────────────────────────────
+// Usage: const { valid, reason } = verifyOTP(userId, inputCode, 'local_transfer')
 export function verifyOTP(userId, inputCode, purpose) {
   const stored = otpStore.get(userId.toString());
   if (!stored)
@@ -83,7 +87,10 @@ export function verifyOTP(userId, inputCode, purpose) {
     return { valid: false, reason: "Invalid OTP purpose." };
   if (Date.now() > stored.expiresAt) {
     otpStore.delete(userId.toString());
-    return { valid: false, reason: "OTP has expired. Please request a new one." };
+    return {
+      valid: false,
+      reason: "OTP has expired. Please request a new one.",
+    };
   }
   if (stored.code !== inputCode.toString())
     return { valid: false, reason: "Incorrect OTP." };

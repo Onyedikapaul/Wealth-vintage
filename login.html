@@ -590,12 +590,12 @@
                         class="block text-sm font-medium text-gray-700"
                         >Password</label
                       >
-                      <a
+                      <!-- <a
                         href="forgot-password.html"
                         class="text-sm text-primary-600 hover:text-primary-500"
                       >
                         Forgot Password?
-                      </a>
+                      </a> -->
                     </div>
                     <div class="input-wrapper">
                       <div class="relative">
@@ -790,6 +790,55 @@
       };
     </script>
 
+    <!-- <script>
+$("#login-form").on("submit", async function (e) {
+  e.preventDefault();
+
+  const form = this;
+  const email    = $("#email").val().trim();
+  const password = $("#password").val();
+
+  const turnstileToken = form.querySelector("[name='cf-turnstile-response']")?.value;
+  if (!turnstileToken) {
+    return showToast("⚠️ Please complete the captcha.", false);
+  }
+
+  if (!email || !password) {
+    return showToast("Email and password are required", "error");
+  }
+
+  const submitButton       = $(this).find('button[type="submit"]');
+  const originalButtonHtml = submitButton.html();
+  submitButton.prop("disabled", true).html("Checking credentials...");
+
+  try {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, "cf-turnstile-response": turnstileToken }),
+    });
+
+    const result = await res.json();
+    submitButton.prop("disabled", false).html(originalButtonHtml);
+
+    if (!res.ok) {
+      return showToast(result.message || "Login failed", "error");
+    }
+
+    showToast("Login successful! Redirecting...", "success");
+    setTimeout(() => {
+      window.location.href = "/dashboard";
+    }, 1200);
+
+  } catch (err) {
+    console.error(err);
+    submitButton.prop("disabled", false).html(originalButtonHtml);
+    showToast("Server error. Please try again.", "error");
+  }
+});
+</script> -->
+
    <script>
     // Replace the existing login form submit <script> in login.html
 
@@ -853,6 +902,7 @@ $("#login-form").on("submit", async function (e) {
   }
 });
    </script>
+
 
    <script>
       // login-register-protect.js
