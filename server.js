@@ -29,6 +29,7 @@ import AdminLocalTransferRouter from "./controllers/admin/AdminLocalTransferCont
 import UserCardRouter from "./controllers/UserCardsController.js";
 import WalletRouter from "./controllers/GetWalletAddressController.js";
 import AdminInternationalTransferRouter from "./controllers/admin/AdminInternationalTransferController.js";
+import KYCRouter from "./controllers/KYCController.js";
 
 const app = express();
 app.set('trust proxy', 1); // add this right after const app = express();
@@ -93,6 +94,7 @@ app.use("/api/cards", CardRouter);
 app.use("/api/international-transfer", InternationalTransferRouter);
 app.use("/api/user/cards", UserCardRouter);
 app.use("/api/wallet", WalletRouter);
+app.use('/api/kyc', KYCRouter);
 
 // Admin
 app.use("/api/admin/auth", AdminAuthRouter);

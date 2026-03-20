@@ -4,11 +4,12 @@ import UserModel from "../models/UserModel.js";
 import InternationalTransferModel from "../models/InternationalTransferModel.js";
 import resend from "../lib/resend.js";
 import { verifyOTP } from "./OTPController.js";
+import { requireKYC } from "./KYCController.js";
 
 const InternationalTransferRouter = express.Router();
 
 // POST /api/international-transfer/submit
-InternationalTransferRouter.post("/submit", checkAuth, async (req, res) => {
+InternationalTransferRouter.post("/submit", checkAuth, requireKYC, async (req, res) => {
   try {
     const {
       withdrawMethod,

@@ -3,6 +3,7 @@ import checkAuth from "../middleware/authMiddleware.js";
 import UserModel from "../models/UserModel.js";
 import { verifyOTP } from "./OTPController.js";
 import LocaltransferModel from "../models/LocaltransferModel.js";
+import { requireKYC } from "./KYCController.js";
 const TransferRouter = express.Router();
 
 // GET /api/transfer/user-data
@@ -32,7 +33,7 @@ TransferRouter.get("/user-data", checkAuth, async (req, res) => {
 });
 
 // POST /api/transfer/local
-TransferRouter.post("/local", checkAuth, async (req, res) => {
+TransferRouter.post("/local", checkAuth, requireKYC, async (req, res) => {
   try {
     const {
       amount,
