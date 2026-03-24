@@ -626,7 +626,7 @@
             <div class="flex-1 flex flex-col w-full">
                 <!-- Desktop Header -->
                               <div id="header-slot"></div>
-
+  
                 <!-- Main Content -->
          <main class="flex-1 bg-gray-50 dark:bg-gray-900 min-h-0">
   <div class="h-full overflow-y-auto">
@@ -1230,7 +1230,7 @@ function quickTransfer() {
                   <div class="space-y-2">
                     <label for="otp_code" class="block text-xs font-semibold text-gray-700 dark:text-gray-300">One-Time Password (OTP)</label>
                     <div class="flex gap-2">
-                      <button type="button" onclick="requestOTP('local_transfer')" id="otpRequestBtn" class="px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-semibold transition-all shadow-md hover:shadow-lg text-sm whitespace-nowrap">
+                      <button type="button" @click="requestOTP('local_transfer')" id="otpRequestBtn" class="px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg font-semibold transition-all shadow-md hover:shadow-lg text-sm whitespace-nowrap">
                         <i class="fas fa-envelope mr-2"></i>Request OTP
                       </button>
                       <div class="relative flex-1">
@@ -1574,6 +1574,55 @@ checkAuth();
 
 <!-- Main Script -->
       <script type="module" src="/auth-script/local-transfer.js"></script>
+
+
+      <!-- <script>
+async function requestOTP(type) {
+  const btn = document.getElementById("otpRequestBtn");
+
+  try {
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+
+    const res = await fetch('/api/otp/request', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({ type }) // MUST match "local_transfer"
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      showToast('success', data.message || 'OTP sent to your email');
+
+      // optional cooldown
+      let seconds = 60;
+      const interval = setInterval(() => {
+        btn.innerHTML = `Resend (${seconds}s)`;
+        seconds--;
+        if (seconds < 0) {
+          clearInterval(interval);
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-envelope mr-2"></i>Request OTP';
+        }
+      }, 1000);
+
+    } else {
+      throw new Error(data.message || 'Failed to send OTP');
+    }
+
+  } catch (err) {
+    showToast('error', err.message || 'Error requesting OTP');
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-envelope mr-2"></i>Request OTP';
+  }
+}
+</script> -->
+
 
 
   <!-- Smartsupp Live Chat script -->
