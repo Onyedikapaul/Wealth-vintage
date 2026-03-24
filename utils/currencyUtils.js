@@ -356,6 +356,8 @@ const COUNTRY_CURRENCY_MAP = {
 
 const DEFAULT_CURRENCY = { symbol: "$", code: "USD", name: "US Dollar" };
 
+export { COUNTRY_CURRENCY_MAP };
+
 /**
  * Get currency info for a country.
  * @param {string} country - The country value as stored in User.country

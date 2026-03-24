@@ -559,6 +559,8 @@
 // international-transfer.js
 
 // ─── Currency helpers ─────────────────────────────────────────────────────────
+
+
 function getIntlSymbol() { return window._userProfile?.currency?.symbol ?? "$"; }
 function getIntlCode()   { return window._userProfile?.currency?.code   ?? "USD"; }
 

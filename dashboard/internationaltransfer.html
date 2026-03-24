@@ -759,7 +759,7 @@
         },
         
         validateAmount() {
-            const maxBalance = this.balanceType === 'fiat' ? 20369651 : 12.5760278;
+            const maxBalance = this.balanceType === 'fiat' ? 500000 : 12.5760278;
             if (this.amount > maxBalance) {
                 this.amount = maxBalance;
             }
@@ -1098,7 +1098,7 @@
                 <label for="amount" class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-2">Amount to Transfer</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <span class="text-gray-500 text-lg font-bold" x-text="withdrawMethod === 'Cryptocurrency' ? '' : '$'"></span>
+                        <span class="text-gray-500 text-lg font-bold" x-text="withdrawMethod === 'Cryptocurrency' ? '' : (window._userProfile?.currency?.symbol ?? '$')"></span>
                     </div>
                     <input 
                         type="number" 
@@ -1106,8 +1106,8 @@
                         id="amount" 
                         x-model="amount"
                         @input="validateAmount()"
-                        :min="withdrawMethod === 'Cryptocurrency' ? '0.00000001' : '1'" 
-                        :max="withdrawMethod === 'Cryptocurrency' ? 12.5760278 : 20369651"
+                        :min="withdrawMethod === 'Cryptocurrency' ? '0.00000001' : '4000'" 
+                        :max="withdrawMethod === 'Cryptocurrency' ? 12.5760278 : 500000"
                         :step="withdrawMethod === 'Cryptocurrency' ? '0.00000001' : '0.01'"
                         class="block w-full pl-12 pr-20 py-3 border-2 border-primary-100 dark:border-primary-800 rounded-lg bg-white dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all text-xl font-bold"
                         :placeholder="withdrawMethod === 'Cryptocurrency' ? '0.00000000' : '0.00'"
@@ -1119,21 +1119,22 @@
                     <!-- Quick Amount Buttons -->
                     <div class="flex space-x-2">
                         <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                            <div class="flex space-x-2">
-                                <button type="button" @click="amount = '100'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">$100</button>
-                                <button type="button" @click="amount = '500'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">$500</button>
-                                <button type="button" @click="amount = '1000'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">$1000</button>
-                                <button type="button" @click="amount = 20369651" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">Max</button>
+                            <div class="flex space-x-2" style="visibility: hidden;" >
+                             <button type="button" @click="amount = '100'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors"><span x-text="$store?.userCurrency?.symbol ?? window._userProfile?.currency?.symbol ?? '$'"></span>100</button>
+<button type="button" @click="amount = '500'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors"><span x-text="$store?.userCurrency?.symbol ?? window._userProfile?.currency?.symbol ?? '$'"></span>500</button>
+<button type="button" @click="amount = '1000'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors"><span x-text="$store?.userCurrency?.symbol ?? window._userProfile?.currency?.symbol ?? '$'"></span>1000
+</button
                             </div>
                         </template>
-                        <template x-if="withdrawMethod === 'Cryptocurrency'">
+
+                        <!-- <template x-if="withdrawMethod === 'Cryptocurrency'">
                             <div class="flex space-x-2">
                                 <button type="button" @click="amount = '0.001'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">0.001 BTC</button>
                                 <button type="button" @click="amount = '0.01'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">0.01 BTC</button>
                                 <button type="button" @click="amount = '0.1'" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">0.1 BTC</button>
                                 <button type="button" @click="amount = 12.5760278" class="px-2 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md text-xs font-medium text-gray-700 dark:text-gray-300 transition-colors">Max</button>
                             </div>
-                        </template>
+                        </template> -->
                     </div>
                 </div>
                 
@@ -1148,8 +1149,8 @@
                             <span class="text-xs font-medium text-gray-700 dark:text-gray-300">Transfer Limits</span>
                         </div>
                         <div class="flex justify-between text-xs text-gray-600 dark:text-gray-400">
-                            <span>Minimum: <span class="font-semibold text-gray-900 dark:text-white">$4,000.00</span></span>
-                            <span>Maximum: <span class="font-semibold text-gray-900 dark:text-white">$500,000.00</span></span>
+                            <span>Minimum: <span class="font-semibold text-gray-900 dark:text-white" id="intl-min-display">...</span></span>
+<span>Maximum: <span class="font-semibold text-gray-900 dark:text-white" id="intl-max-display">...</span></span>
                         </div>
                     </div>
                 </template>
@@ -2466,7 +2467,8 @@
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500 dark:text-gray-400 text-xs">Amount</span>
                         <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                            <span class="font-medium text-gray-700 dark:text-gray-300 text-xs" x-text="amount ? '$' + parseFloat(amount).toFixed(2) : '$0.00'"></span>
+                           <span class="font-medium text-gray-700 dark:text-gray-300 text-xs" x-text="amount ? (window._userProfile?.currency?.symbol ?? '$') + parseFloat(amount).toFixed(2) : (window._userProfile?.currency?.symbol ?? '$') + '0.00'"></span>
+
                         </template>
                         <template x-if="withdrawMethod === 'Cryptocurrency'">
                             <span class="font-medium text-gray-700 dark:text-gray-300 text-xs" x-text="amount ? parseFloat(amount).toFixed(8) + ' BTC' : '0.00000000 BTC'"></span>
@@ -2488,7 +2490,8 @@
                     <div class="flex justify-between items-center">
                         <span class="text-gray-500 dark:text-gray-400 text-xs">Fee</span>
                         <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                            <span class="font-medium text-gray-700 dark:text-gray-300 text-xs">$0.00</span>
+                         <span class="font-medium text-gray-700 dark:text-gray-300 text-xs" x-text="(window._userProfile?.currency?.symbol ?? '$') + '0.00'"></span>
+
                         </template>
                         <template x-if="withdrawMethod === 'Cryptocurrency'">
                             <span class="font-medium text-gray-700 dark:text-gray-300 text-xs">0.00000000 BTC</span>
@@ -2500,7 +2503,8 @@
                         <div class="flex justify-between items-center">
                             <span class="text-gray-700 dark:text-gray-300 font-medium text-xs">Total</span>
                             <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                                <span class="font-bold text-sm text-gray-900 dark:text-white" x-text="amount ? '$' + parseFloat(amount).toFixed(2) : '$0.00'"></span>
+                             <span class="font-bold text-sm text-gray-900 dark:text-white" x-text="amount ? (window._userProfile?.currency?.symbol ?? '$') + parseFloat(amount).toFixed(2) : (window._userProfile?.currency?.symbol ?? '$') + '0.00'"></span>
+
                             </template>
                             <template x-if="withdrawMethod === 'Cryptocurrency'">
                                 <span class="font-bold text-sm text-gray-900 dark:text-white" x-text="amount ? parseFloat(amount).toFixed(8) + ' BTC' : '0.00000000 BTC'"></span>
@@ -2512,7 +2516,8 @@
                     <div class="flex justify-between items-center pt-1">
                         <span class="font-medium text-gray-500 dark:text-gray-400 text-xs">New Balance After Transfer</span>
                         <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                            <span class="text-gray-900 dark:text-white text-xs" x-text="'$' + (20369651 - (parseFloat(amount) || 0)).toFixed(2)"></span>
+                           <span class="text-gray-900 dark:text-white text-xs" x-text="(window._userProfile?.currency?.symbol ?? '$') + (500000 - (parseFloat(amount) || 0)).toFixed(2)"></span>
+
                         </template>
                         <template x-if="withdrawMethod === 'Cryptocurrency'">
                             <span class="text-gray-900 dark:text-white text-xs" x-text="(12.5760278 - (parseFloat(amount) || 0)).toFixed(8) + ' BTC'"></span>
@@ -2625,7 +2630,8 @@
                         <div class="flex justify-between text-sm">
                             <span class="font-medium text-gray-500 dark:text-gray-400">Amount</span>
                             <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                                <span class="text-gray-900 dark:text-white font-bold" x-text="'$' + parseFloat(amount).toFixed(2)"></span>
+                              <span class="text-gray-900 dark:text-white font-bold" x-text="(window._userProfile?.currency?.symbol ?? '$') + parseFloat(amount).toFixed(2)"></span>
+
                             </template>
                             <template x-if="withdrawMethod === 'Cryptocurrency'">
                                 <span class="text-gray-900 dark:text-white font-bold" x-text="parseFloat(amount).toFixed(8) + ' BTC'"></span>
@@ -2687,7 +2693,8 @@
                             <div class="flex justify-between text-sm mt-1">
                                 <span class="font-medium text-gray-500 dark:text-gray-400">New Balance</span>
                                 <template x-if="withdrawMethod !== 'Cryptocurrency'">
-                                    <span class="text-gray-900 dark:text-white" x-text="'$' + (20369651 - parseFloat(amount)).toFixed(2)"></span>
+                                   <span class="text-gray-900 dark:text-white" x-text="(window._userProfile?.currency?.symbol ?? '$') + (500000 - parseFloat(amount)).toFixed(2)"></span>
+
                                 </template>
                                 <template x-if="withdrawMethod === 'Cryptocurrency'">
                                     <span class="text-gray-900 dark:text-white" x-text="(12.5760278 - parseFloat(amount)).toFixed(8) + ' BTC'"></span>
@@ -2813,7 +2820,8 @@
                     <div class="grid grid-cols-2 gap-3 text-sm">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400">Amount</p>
-                            <p class="font-medium text-gray-900 dark:text-white">$<span id="modalAmount"></span></p>
+                           <p class="font-medium text-gray-900 dark:text-white" id="modalAmount">...</p>
+
                         </div>
                         <div>
                             <p class="text-gray-500 dark:text-gray-400">Method</p>
