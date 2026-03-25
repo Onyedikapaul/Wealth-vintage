@@ -300,8 +300,6 @@ async function submitTransfer(alpineData, processingModal) {
         swift_code: alpineData.swift_code,
         description: alpineData.Description,
         amount: alpineData.amount,
-        balanceBefore: data.balanceBefore,
-        balanceAfter: data.balanceAfter,
         status: data.status || "pending",
         createdAt: new Date().toISOString(),
         message: data.message,
@@ -445,24 +443,6 @@ function showReceiptModal(txn) {
           ${optRow("Routing Number", txn.routing_number)}
           ${optRow("SWIFT Code", txn.swift_code)}
           ${optRow("Description", txn.description)}
-          ${
-            txn.balanceBefore != null
-              ? `
-          <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700/50">
-            <span class="text-sm text-gray-500 dark:text-gray-400">Balance Before</span>
-            <span class="text-sm text-gray-900 dark:text-white">${fmt(txn.balanceBefore)}</span>
-          </div>`
-              : ""
-          }
-          ${
-            txn.balanceAfter != null
-              ? `
-          <div class="flex justify-between py-2 border-b border-gray-100 dark:border-gray-700/50">
-            <span class="text-sm text-gray-500 dark:text-gray-400">Balance After</span>
-            <span class="text-sm text-gray-900 dark:text-white">${fmt(txn.balanceAfter)}</span>
-          </div>`
-              : ""
-          }
           <div class="flex justify-between py-2">
             <span class="text-sm text-gray-500 dark:text-gray-400">Date</span>
             <span class="text-sm text-gray-900 dark:text-white">${fmtDate(txn.createdAt)} ${fmtTime(txn.createdAt)}</span>
@@ -565,8 +545,6 @@ function downloadTransferReceiptPdf(txn) {
     ["Routing Number", txn.routing_number || "—"],
     ["Swift Code", txn.swift_code || "—"],
     ["Description", txn.description || "—"],
-    ["Balance Before", fmtPdf(txn.balanceBefore)],
-    ["Balance After", fmtPdf(txn.balanceAfter)],
     ["Status", cap(txn.status)],
     ["Date", fmtDate(txn.createdAt) + " " + fmtTime(txn.createdAt)],
   ];
@@ -669,7 +647,8 @@ function showToast(message, type = "info") {
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 // ─── Init ─────────────────────────────────────────────────────────────────────
-window.requestOTP = requestOTP; // ← ADD THIS LINE
+window.requestOTP = requestOTP;
+window.downloadTransferReceiptPdf = downloadTransferReceiptPdf; 
 
 document.addEventListener("DOMContentLoaded", function () {
   loadTransferPageData();
